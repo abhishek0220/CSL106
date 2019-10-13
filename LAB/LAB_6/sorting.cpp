@@ -54,6 +54,7 @@ void make(int arr2[],int arr[],int n){
   for(int i=0;i<n;i++)
     arr2[i]=arr[i];
 }
+
 int main(){
   int n=10000;
   int arr[n];
@@ -63,18 +64,21 @@ int main(){
   }
   cout<<endl;
   int arr2[n];
+
   make(arr2,arr,n);
   auto start = high_resolution_clock::now();  
   selectionSort(arr2,n);
   auto stop = high_resolution_clock::now(); 
   auto duration = duration_cast<microseconds>(stop - start); 
   cout << "Time taken by selectionSort: "<< duration.count() << " microseconds" << endl;
+
   make(arr2,arr,n);
   start = high_resolution_clock::now();  
   bubbleSort(arr2,n);
   stop = high_resolution_clock::now(); 
   duration = duration_cast<microseconds>(stop - start); 
   cout << "Time taken by BubbleSort: "<< duration.count() << " microseconds" << endl; 
+  
   make(arr2,arr,n);
   start = high_resolution_clock::now();  
   quickSort(arr2,0,n-1);
