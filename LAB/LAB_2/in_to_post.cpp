@@ -64,7 +64,7 @@ string in_post(string s)
 }
 int main() 
 { 
-    string str = "a+b*(c^d-e)^(f+g*h)-i"; 
+    string str = "a+b*(c^d-e)"; 
     string ans=in_post(str); 
     cout<<ans<<endl;
     return 0; 
