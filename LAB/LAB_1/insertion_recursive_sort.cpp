@@ -25,9 +25,9 @@ void insertionSort(int arr[], int n)
 // Function to print an array of size n 
 void display(int arr[], int n) 
 { 
-    for (int i=0; i < n; i++) 
+    for (int i = 0; i < n; i++) 
         cout << arr[i] <<" "; 
-    cout<<endl;
+    cout << endl;
 } 
   
 int main() 
