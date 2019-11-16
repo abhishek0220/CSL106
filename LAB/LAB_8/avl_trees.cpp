@@ -75,8 +75,57 @@ public:
 	}
 	void insert(int da){
 		root = insert_func(da, root);
-		root->height = max(height(root->left), height(root->right)) + 1;
 	}
+	Node* minNode(Node* tem) {
+	    if(tem->left == NULL)
+	    	return tem;
+	    return minNode(tem->left);
+	}  
+	Node* deleteNode(int data, Node *tem){
+	    if ( data < tem->data )  
+	        tem->left = deleteNode(data, tem->left); 
+	    else if( data > tem->data )  
+	        tem->right = deleteNode(data, root->right);
+	    else{
+	        if( (tem->left == NULL) ||  (tem->right == NULL) )  
+	        {  
+	            Node *temp = tem->left ? tem->left : tem->right;  
+	            if (temp == NULL)  
+	            {  
+	                temp = tem;  
+	                tem = NULL;  
+	            }  
+	            else 
+	            	*tem = *temp; 
+	            free(temp);  
+	        }  
+	        else
+	        {   
+	            Node* temp = minNode(tem->right);  
+	            tem->data = temp->data;  
+	            tem->right = deleteNode(temp->data, tem->right);  
+	        }  
+	    }  
+	    if (tem == NULL)  
+	    return tem;   
+	    tem->height = 1 + max(height(tem->left), height(tem->right)); 
+	    int balance = difference(tem);  
+	    if (balance > 1){
+	        if(difference(tem->left) < 0) 
+	        	tem->left = leftRotate(tem->left);  
+	        return rightRotate(tem);
+	    } 
+	    if (balance < -1 ){ 
+	        if(difference(tem->right) > 0)  
+	        	tem->right = rightRotate(tem->right);
+	        return leftRotate(tem);
+	    } 
+	    return tem;  
+	}
+	void remove(int da){
+		root = deleteNode(da, root);
+	}
+	//taken from geeks from geeks
 	void print2DUtil(Node *tem, int space)  
 	{  
 	    // Base case  
@@ -103,6 +152,11 @@ int main(){
 	for(auto i : arr){
 		tree.insert(i);
 	}
+	tree.print2D();
+	tree.remove(1);
+	tree.remove(2);
+	tree.remove(3);
+	tree.print2D();
 	
 	return 0;
 }
