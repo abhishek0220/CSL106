@@ -89,13 +89,19 @@ public:
 					}
 					tem->right = t2->right;
 				}
-				if(pr->data < t2->data ){
-					pr->right = t3;
-					//pr->right->parent = pr;
+				if(pr != NULL){
+					if(pr->data < t2->data ){
+						pr->right = t3;
+						//pr->right->parent = pr;
+					}
+					else{
+						pr->left = t3;
+						//pr->left->parent = pr;
+					}
+					
 				}
 				else{
-					pr->left = t3;
-					//pr->left->parent = pr;
+					root = t2->left;
 				}
 				free(t2);
 				con=1;
@@ -237,12 +243,12 @@ int main(){
 	//tree.search(30);
 	//tree.BST_max();
 	//tree.BST_min();
-	tree.display_inorder();
-	//tree.print2D();
+	//tree.display_inorder();
+	tree.print2D();
 	//tree.inorder_sucessor(50);
 	//tree.inorder_predessor(50);
-	//tree.deletion(30);
-	//tree.print2D();
+	tree.deletion(50);
+	tree.print2D();
 	//tree.insert(30);
 	//tree.print2D();
 	cout<<"done"<<endl;
