@@ -1,0 +1,41 @@
+-------------
+|Bucket sort|
+-------------
+===========================================================
+Psuedo Code for Bucket Sort
+------------------------------------------------------------
+//Step 1
+for i := 0 to array_size-1 do
+    insert array[i] into the bucket index (size * array[i])
+
+//Step 2
+for i := 0 to bucket_size-1 do
+    sort bucket[i]
+   
+//Step 3
+for i := 0 to size -1 do
+    gather items of bucket[i] and put in array
+--------------------------------------------------------------
+--------------------------------------------------------------
+in worst case:
+
+step 1 take O(n)
+step 2 take O(n^2)
+step 3 take O(n+k)
+overall time complexity will be O(n^2)
+--------------------------------------------------------------
+in average case:
+
+step 1 take O(n)
+step 2 take O(n)
+step 3 take O(n+k)
+overall time complexity will be O(n+k)
+--------------------------------------------------------------
+in best case:
+
+step 1 take O(n)
+step 2 take O(n)
+step 3 take O(n+k)
+overall time complexity will be O(n+k)
+--------------------------------------------------------------
+--------------------------------------------------------------  
