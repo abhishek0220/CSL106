@@ -4,46 +4,20 @@ using namespace std;
 class Node{
 public:
 	int data;
-	Node *left, *right;
+	Node *left=NULL;
+    Node *right=NULL;
 	//Node *parent;
 };
 class BST{
+private:
+     void insertHelper(Node* treeNode,int data);
 public:
 	Node* root;
 	BST(){
 		root = NULL;
 	}
 	void insert(int da){
-		Node* new_node=new Node();
-		new_node->data=da;
-		new_node->left=NULL;
-		new_node->right=NULL;
-		if(root == NULL){
-			//new_node->parent = root;
-			root = new_node;
-		}
-		else{
-			Node *tem;
-			tem=root;
-			while(true){
-				if(tem->data < da){
-					if(tem->right == NULL){
-						tem ->right = new_node;
-						//new_node->parent = tem;
-						break;
-					}
-					tem = tem->right;
-				}
-				else{
-					if(tem->left == NULL){
-						tem ->left = new_node;
-						//new_node->parent = tem;
-						break;
-					}
-					tem = tem->left;
-				}
-			}
-		}
+		insertHelper(root, da);
 	}
 	void search(int da){
 		Node *tem;
@@ -231,6 +205,38 @@ public:
 	    cout<<endl;
 	}
 };
+
+void BST :: insertHelper(Node* treeNode,int data){
+    if (!treeNode)
+        {
+                treeNode = new Node();
+                treeNode->data = data;           
+                root = treeNode;           
+        }
+        else
+        {
+            if (data < treeNode->data)
+            {
+                if (!treeNode->left)
+                {
+                    Node *treeTemp = new Node();
+                    treeTemp->data = data;
+                    treeNode->left = treeTemp;
+                }
+                else insertHelper(treeNode->left, data);
+                }
+            else
+            {
+            if (!treeNode->right)
+            {
+                Node *treeTemp = new Node();
+                treeTemp->data = data;
+                treeNode->right = treeTemp;
+            }
+            else insertHelper(treeNode->right, data);
+            }
+        }
+}
 int main(){
 	BST tree;
 	tree.insert(50);
